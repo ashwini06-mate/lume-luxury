@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUMÉ — Luminous skincare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ece7f1;--surface:#f7f4fa;--ink:#1d1730;--muted:#5d5673;--gold:#a8844a;--blush:#e9d2d6;--line:rgba(29,23,48,.14);--deep:#1d1730;--ondeep:#f1ecf6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14102140;--bg:#151023;--surface:#1f1933;--ink:#f1ecf6;--muted:#b3abc8;--gold:#d2ae73;--line:rgba(241,236,246,.16);--deep:#0e0a19;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151023;--surface:#1f1933;--ink:#f1ecf6;--muted:#b3abc8;--gold:#d2ae73;--line:rgba(241,236,246,.16);--deep:#0e0a19;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 1.0625rem/1.65 'Jost',system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1.05;margin:0}
+h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+section{padding:clamp(72px,10vw,140px) 0}
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:.32em;font-weight:400;text-decoration:none;color:var(--ink)}
+.links{display:flex;gap:34px}
+.links a{color:var(--ink);text-decoration:none;font-size:.95rem;position:relative}
+.links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.links a:hover::after{transform:scaleX(1)}
+.cartbtn{background:none;border:1px solid var(--line);border-radius:99px;padding:8px 18px;display:flex;gap:10px;align-items:center;transition:background .3s,color .3s}
+.cartbtn:hover{background:var(--ink);color:var(--bg)}
+.count{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:99px;background:var(--gold);color:#fff;font-size:.75rem;padding:0 6px}
+.count.bump{animation:bump .4s}
+@keyframes bump{50%{transform:scale(1.5)}}
+/* hero */
+.hero{min-height:100svh;display:grid;align-items:center;padding:120px 0 70px;position:relative;overflow:hidden;background:radial-gradient(60% 55% at 72% 48%,var(--blush),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3.2rem,8.5vw,7.4rem);letter-spacing:-.02em;font-weight:300}
+.hero h1 i{font-weight:300;color:var(--gold)}
+.hero p.lead{max-width:30rem;margin:26px 0 38px;color:var(--muted);font-size:1.15rem}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);border:0;border-radius:99px;padding:15px 34px;font-size:.98rem;letter-spacing:.04em;text-decoration:none;transition:transform .3s,background .3s}
+.btn:hover{transform:translateY(-2px);background:var(--gold);color:#fff}
+.btn.ghost{background:none;border:1px solid var(--ink);color:var(--ink);margin-left:12px}
+.stage{position:relative;aspect-ratio:1/1.1;max-width:480px;margin-left:auto;width:100%;display:grid;place-items:center}
+.halo{position:absolute;inset:8%;border-radius:50%;border:1px solid var(--gold);opacity:.5;animation:spin 40s linear infinite}
+.halo.b{inset:20%;animation-direction:reverse;border-style:dashed}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-bottle{width:48%;animation:float 7s ease-in-out infinite;filter:drop-shadow(0 40px 40px rgba(60,30,90,.28));z-index:2}
+@keyframes float{50%{transform:translateY(-18px) rotate(1.5deg)}}
+.drop{position:absolute;left:50%;top:6%;width:12px;height:16px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:linear-gradient(var(--gold),#f3dcae);opacity:0;animation:drip 5.5s ease-in infinite}
+.drop:nth-of-type(4){left:44%;animation-delay:1.8s;transform:scale(.7)}
+.drop:nth-of-type(5){left:56%;animation-delay:3.6s;transform:scale(.5)}
+@keyframes drip{0%{opacity:0;transform:translateY(0)}15%{opacity:.95}70%{opacity:.9}100%{opacity:0;transform:translateY(140px) scaleY(1.4)}}
+.scrollhint{position:absolute;bottom:26px;left:50%;width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{opacity:.2}}
+/* collection */
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.head p{max-width:26rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:26px}
+.card{background:var(--surface);border-radius:200px 200px 22px 22px;padding:36px 26px 28px;text-align:center;position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;border:1px solid var(--line)}
+.card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(40,20,70,.45)}
+.card .art{height:220px;display:grid;place-items:center;perspective:600px}
+.card svg{height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.card:hover svg{transform:rotateY(18deg) translateY(-6px) scale(1.05)}
+.card h3{font-size:1.85rem;margin-top:14px}
+.card .kind{color:var(--muted);font-size:.9rem}
+.reveal{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .4s;color:var(--muted);font-size:.95rem}
+.card:hover .reveal,.card:focus-within .reveal,.card.open .reveal{max-height:90px;opacity:1;margin-top:8px}
+.sizes{display:flex;justify-content:center;gap:8px;margin:16px 0}
+.sizes button{background:none;border:1px solid var(--line);border-radius:99px;padding:4px 14px;font-size:.85rem}
+.sizes button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.price{font-family:'Cormorant Garamond',serif;font-size:1.7rem}
+.add{background:none;border:1px solid var(--ink);border-radius:99px;padding:8px 20px;transition:.3s}
+.add:hover{background:var(--ink);color:var(--bg)}
+.add.done{background:var(--gold);border-color:var(--gold);color:#fff}
+/* ingredients */
+.ingr{background:var(--deep);color:var(--ondeep)}
+.ingr h2{color:var(--ondeep)}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:center;margin-top:48px}
+.tabs{display:flex;flex-direction:column;border-top:1px solid rgba(241,236,246,.18)}
+.tab{background:none;border:0;border-bottom:1px solid rgba(241,236,246,.18);text-align:left;padding:20px 4px;font-family:'Cormorant Garamond',serif;font-size:1.9rem;display:flex;justify-content:space-between;color:rgba(241,236,246,.55);transition:color .3s,padding .4s}
+.tab span{font:300 .85rem 'Jost';align-self:center;opacity:0}
+.tab[aria-selected=true]{color:#f1ecf6;padding-left:16px}
+.tab[aria-selected=true] span{opacity:1;color:#d2ae73}
+.detail{position:relative;min-height:340px;display:grid;place-items:center;text-align:center}
+.orb{width:min(300px,70vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff9,transparent 40%),var(--c,#d2ae73);box-shadow:0 0 90px var(--c,#d2ae73);transition:background .6s,box-shadow .6s;animation:breathe 6s ease-in-out infinite;display:grid;place-items:center;padding:34px}
+@keyframes breathe{50%{transform:scale(1.06)}}
+.orb p{color:#1d1730;font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.25;font-weight:500}
+.pct{margin-top:26px;color:rgba(241,236,246,.75)}
+/* benefits */
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border-top:1px solid var(--line)}
+.ben{padding:36px 28px 36px 0;border-bottom:1px solid var(--line)}
+.ben b{display:block;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:4rem;line-height:1;color:var(--gold)}
+.ben h3{font-size:1.5rem;margin:12px 0 6px}
+.ben p{color:var(--muted);font-size:.97rem}
+.quote{text-align:center;max-width:46rem;margin:90px auto 0}
+.quote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.2}
+.quote small{display:block;margin-top:18px;color:var(--muted)}
+/* news */
+.news{background:var(--blush);text-align:center}
+:root:not([data-theme="light"]) .news{--blush:#2a2040}
+.news form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.news input{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:14px 24px;min-width:min(320px,100%);font:inherit}
+footer{padding:36px 0 48px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,10,40,.5);opacity:0;pointer-events:none;transition:opacity .4s;z-index:30}
+.scrim.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--surface);z-index:40;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px))}
+aside.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+.dh h3{font-size:2rem}
+.x{background:none;border:0;font-size:1.8rem;line-height:1}
+.items{flex:1;overflow:auto;padding:10px 0}
+.empty{text-align:center;color:var(--muted);margin-top:70px}
+.item{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);animation:slidein .4s}
+@keyframes slidein{from{opacity:0;transform:translateX(24px)}}
+.item svg{height:64px;width:54px}
+.item h4{margin:0;font:400 1rem 'Jost'}
+.item small{color:var(--muted)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;margin-top:6px}
+.qty button{background:none;border:0;width:30px;height:28px}
+.qty span{min-width:20px;text-align:center;font-size:.9rem}
+.tot{border-top:1px solid var(--line);padding-top:18px}
+.row{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted)}
+.row.big{color:var(--ink);font-size:1.25rem}
+.bar{height:4px;background:var(--line);border-radius:9px;margin:4px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .5s}
+.tot .btn{width:100%;margin-top:14px;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--ink);color:var(--bg);padding:12px 24px;border-radius:99px;z-index:50;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.toast.on{transform:translate(-50%,0)}
+/* v2 polish */
+.hero{background:radial-gradient(55% 55% at 72% 50%,var(--blush),transparent 70%),radial-gradient(40% 40% at 8% 90%,color-mix(in srgb,var(--gold) 22%,transparent),transparent 70%)}
+.hb{position:absolute;animation:float 7s ease-in-out infinite;filter:drop-shadow(0 30px 28px rgba(60,30,90,.3))}
+.hb svg{width:100%;height:auto;display:block}
+.hb.c{width:48%;left:26%;bottom:8%;z-index:3}
+.hb.l{width:34%;left:0;bottom:6%;z-index:2;animation-delay:-2.3s}
+.hb.r{width:28%;right:0;bottom:8%;z-index:2;animation-delay:-4.6s}
+.stage{aspect-ratio:1/1.05}
+.sp{position:absolute;width:14px;height:14px;background:var(--gold);clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:tw 3.6s ease-in-out infinite;z-index:4}
+@keyframes tw{50%{transform:scale(1.7) rotate(45deg);opacity:.35}}
+.mq{overflow:hidden;white-space:nowrap;border-block:1px solid var(--line);padding:18px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.7rem;color:var(--gold)}
+.track{display:inline-flex;animation:mq 38s linear infinite}
+.track span{padding-right:.5em}
+@keyframes mq{to{transform:translateX(-50%)}}
+.card{overflow:hidden;padding-top:70px;background:linear-gradient(180deg,color-mix(in srgb,var(--t) 55%,var(--surface)),var(--surface) 62%)}
+.card::after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-14deg);transition:left .9s;pointer-events:none}
+.card:hover::after{left:130%}
+.tag{position:absolute;top:34px;left:50%;transform:translateX(-50%);font-size:.78rem;letter-spacing:.06em;border:1px solid var(--gold);color:var(--gold);padding:2px 14px;border-radius:99px;background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.card .art{height:260px;position:relative;background:radial-gradient(closest-side,color-mix(in srgb,var(--t) 80%,#fff),transparent 78%)}
+.card .art svg{position:relative;z-index:1;filter:drop-shadow(0 16px 14px rgba(40,20,70,.22))}
+.ped{position:absolute;bottom:4px;left:50%;width:70%;height:22px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.9),color-mix(in srgb,var(--t) 70%,transparent) 70%,transparent)}
+.rit{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.rs{text-align:center;padding:34px 22px 30px;border-radius:26px;background:var(--surface);border:1px solid var(--line);transition:transform .5s}
+.rs:hover{transform:translateY(-6px)}
+.rs svg{height:170px;filter:drop-shadow(0 14px 12px rgba(40,20,70,.2))}
+.rs h3{font-size:2rem;margin:14px 0 6px}
+.rs p{color:var(--muted);font-size:.97rem;max-width:20rem;margin:0 auto}
+.ingr{background:radial-gradient(60% 70% at 88% 25%,#3b2b6b,transparent 62%),radial-gradient(40% 50% at 5% 95%,rgba(210,174,115,.18),transparent 70%),var(--deep)}
+h2{letter-spacing:-.01em}
+/* responsive */
+@media (max-width:860px){
+ .links{display:none}
+ .hero .wrap,.split{grid-template-columns:1fr}
+ .stage{margin:10px auto 0;max-width:340px}
+ .hero{padding-top:100px}
+ .btn.ghost{margin:12px 0 0}
+ .scrollhint{display:none}
+}
+@media (hover:none){.reveal{max-height:90px;opacity:1;margin-top:8px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+ <a class="logo" href="#top" aria-label="LUMÉ home">LUMÉ</a>
+ <nav class="links" aria-label="Main"><a href="#collection">Collection</a><a href="#ingredients">Ingredients</a><a href="#benefits">Results</a><a href="#journal">Newsletter</a></nav>
+ <button class="cartbtn" id="openCart" aria-label="Open cart">Cart <span class="count" id="count">0</span></button>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+ <div>
+  <h1>Skin, <i>lit</i> from within.</h1>
+  <p class="lead">Botanical serums and creams, slow-made in small batches to give your skin a quiet, lasting glow.</p>
+  <a class="btn" href="#collection">Shop the collection</a><a class="btn ghost" href="#ingredients">Explore ingredients</a>
+ </div>
+ <div class="stage" aria-hidden="true">
+  <div class="halo"></div><div class="halo b"></div><i class="sp" style="top:14%;left:16%"></i><i class="sp" style="top:30%;right:8%;animation-delay:-1.2s"></i><i class="sp" style="bottom:22%;left:6%;animation-delay:-2.4s"></i>
+  <i class="drop"></i><i class="drop"></i><i class="drop"></i>
+  <div class="hb l" id="hbl"></div><div class="hb c" id="hbc"></div><div class="hb r" id="hbr"></div>
+ </div>
+</div><div class="scrollhint"></div></div>
+
+<div class="mq" aria-hidden="true"><div class="track"><span>Small-batch ✦ Fragrance-free ✦ Refillable glass ✦ Dermatologist tested ✦ Cruelty-free ✦ Small-batch ✦ Fragrance-free ✦ Refillable glass ✦ Dermatologist tested ✦ Cruelty-free ✦ </span><span>Small-batch ✦ Fragrance-free ✦ Refillable glass ✦ Dermatologist tested ✦ Cruelty-free ✦ Small-batch ✦ Fragrance-free ✦ Refillable glass ✦ Dermatologist tested ✦ Cruelty-free ✦ </span></div></div>
+<section id="collection"><div class="wrap">
+ <div class="head"><h2>The collection</h2><p>Four essentials. Use them morning and night, or one at a time. Hover or tap a product to see what it does.</p></div>
+ <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="ritual"><div class="wrap"><div class="head"><h2>Your daily ritual</h2><p>Three steps, two minutes, morning and night.</p></div><div class="rit" id="rit"></div></div></section>
+<section class="ingr" id="ingredients"><div class="wrap">
+ <h2>Ingredients we trust</h2>
+ <div class="split">
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="detail"><div><div class="orb" id="orb"><p id="orbText"></p></div><p class="pct" id="orbSub"></p></div></div>
+ </div>
+</div></section>
+
+<section id="benefits"><div class="wrap">
+ <div class="head"><h2>What you’ll notice</h2><p>Results from a 6-week trial with 212 volunteers, self-reported.</p></div>
+ <div class="benefits">
+  <div class="ben"><b data-n="94">0</b><h3>% brighter</h3><p>said their skin looked more radiant after 4 weeks.</p></div>
+  <div class="ben"><b data-n="89">0</b><h3>% more hydrated</h3><p>felt lasting moisture, even after cleansing.</p></div>
+  <div class="ben"><b data-n="81">0</b><h3>% smoother</h3><p>saw finer-looking lines around the eyes.</p></div>
+  <div class="ben"><b data-n="100">0</b><h3>% gentle</h3><p>No synthetic fragrance, no parabens, dermatologist tested.</p></div>
+ </div>
+ <div class="quote"><p>“It’s the first routine that made my skin look rested, not just covered.”</p><small>Anaya R., verified buyer</small></div>
+</div></section>
+
+<section class="news" id="journal"><div class="wrap">
+ <h2>Join the LUMÉ list</h2>
+ <p style="margin-top:12px;color:var(--muted)">Get early access to new releases and 10% off your first order.</p>
+ <form id="nl"><input type="email" required placeholder="Your email address" aria-label="Email address"><button class="btn" type="submit">Subscribe</button></form>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 LUMÉ Skincare. A fictional brand.</span><span>Free shipping over $100</span></div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside id="drawer" aria-label="Shopping cart" aria-hidden="true">
+ <div class="dh"><h3>Your cart</h3><button class="x" id="closeCart" aria-label="Close cart">×</button></div>
+ <div class="items" id="items"></div>
+ <div class="tot" id="tot"></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+var P=[
+{id:'serum',shape:'dropper',name:'Halo Serum',tag:'Bestseller',kind:'Brightening serum',c1:'#f3dca2',c2:'#b8893f',cap:'#2a2140',t:'#f3e1b8',desc:'Vitamin C and rose extract for visible radiance.',sizes:{'15 ml':58,'30 ml':96}},
+{id:'cream',shape:'jar',name:'Veil Cream',tag:'Barrier care',kind:'Silk moisturizer',c1:'#f8ecee',c2:'#d6aab4',cap:'#b8924d',t:'#f3d5da',desc:'Ceramides and squalane seal in moisture all day.',sizes:{'30 ml':72,'50 ml':110}},
+{id:'oil',shape:'dropper',name:'Dusk Oil',tag:'Night',kind:'Overnight face oil',c1:'#cdbbea',c2:'#6d5a99',cap:'#2a2140',t:'#cdbfe8',desc:'Bakuchiol and jojoba, a retinol-free night reset.',sizes:{'15 ml':64,'30 ml':104}},
+{id:'mist',shape:'spray',name:'Dew Mist',tag:'Refresh',kind:'Hydrating essence',c1:'#dcf1ed',c2:'#7fb3ab',cap:'#2a2140',t:'#bfe0da',desc:'Hyaluronic acid and green tea for a quick refresh.',sizes:{'50 ml':38,'100 ml':62}},
+{id:'cleanser',shape:'pump',name:'Silk Cleanser',tag:'Daily',kind:'Gel cleanser',c1:'#f6f1e9',c2:'#cdbfa8',cap:'#b8924d',t:'#e8dfd0',desc:'Cloud-soft gel wash with oat and rose water.',sizes:{'100 ml':36,'200 ml':58}},
+{id:'eye',shape:'tube',name:'Eye Veil',tag:'New',kind:'Brightening eye cream',c1:'#f6dccd',c2:'#cf9d86',cap:'#b8924d',t:'#f1cdbd',desc:'Caffeine and peptides to de-puff and soften.',sizes:{'15 ml':54,'30 ml':88}}];
+var P0=[
+{id:'serum',name:'Halo Serum',kind:'Brightening serum',c1:'#e7c98f',c2:'#b98f4d',cap:'#1d1730',desc:'Vitamin C and rose extract for visible radiance.',sizes:{'15 ml':58,'30 ml':96}},
+{id:'cream',name:'Veil Cream',kind:'Barrier moisturizer',c1:'#f1dfe2',c2:'#d9b3bb',cap:'#a8844a',desc:'Ceramides and squalane seal in moisture all day.',sizes:{'30 ml':72,'50 ml':110}},
+{id:'oil',name:'Dusk Oil',kind:'Overnight face oil',c1:'#b9a6d6',c2:'#6d5a99',cap:'#e7c98f',desc:'Bakuchiol and jojoba, a retinol-free night reset.',sizes:{'15 ml':64,'30 ml':104}},
+{id:'mist',name:'Dew Mist',kind:'Hydrating essence',c1:'#cfe6e2',c2:'#7fb3ab',cap:'#1d1730',desc:'Hyaluronic acid and green tea for a quick refresh.',sizes:{'50 ml':38,'100 ml':62}}];
+var I=[
+{n:'Vitamin C',c:'#e7b866',t:'Brightens dull tone',s:'Stable 10% ascorbic acid, in a gentle formula.'},
+{n:'Hyaluronic acid',c:'#9fd0ea',t:'Holds water in skin',s:'Three molecular weights hydrate at every depth.'},
+{n:'Bakuchiol',c:'#b9a6d6',t:'Smooths, without irritation',s:'A plant alternative to retinol, safe for daily use.'},
+{n:'Rose extract',c:'#e8a9b6',t:'Calms redness',s:'Cold-pressed petals from small farms in Isparta.'},
+{n:'Squalane',c:'#e9d9a8',t:'Locks in moisture',s:'Sugarcane-derived, light and non-greasy.'}];
+var cart={},sel={};
+function bottle(p,w){var i=p.id,A='url(#a'+i+')',M='url(#m'+i+')',b='';
+var lab=function(x,y,w,h){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="2" fill="#fbf8f2" opacity=".94"/><rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(w-6)+'" height="'+(h-6)+'" rx="1" fill="none" stroke="#b8924d" stroke-width=".5"/><text x="60" y="'+(y+h/2)+'" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="8.5" letter-spacing="2.5" fill="#1d1730">LUMÉ</text><text x="60" y="'+(y+h/2+8)+'" text-anchor="middle" font-family="Jost,sans-serif" font-size="3.4" letter-spacing=".8" fill="#6b5f80">'+p.name.toUpperCase()+'</text>'};
+var hl=function(x,y,h){return '<ellipse cx="'+x+'" cy="'+y+'" rx="2.5" ry="'+h+'" fill="#fff" opacity=".45"/>'};
+if(p.shape=='dropper')b='<rect x="49" y="6" width="22" height="34" rx="10" fill="'+p.cap+'"/><rect x="43" y="36" width="34" height="14" rx="3" fill="'+M+'"/><path d="M43 43h34" stroke="#5e4720" stroke-width="12" stroke-dasharray=".5 3" opacity=".45"/><rect x="32" y="48" width="56" height="126" rx="14" fill="'+A+'"/><rect x="36" y="92" width="48" height="78" rx="10" fill="'+p.c2+'" opacity=".4"/><rect x="58" y="50" width="4" height="72" rx="2" fill="#fff" opacity=".55"/>'+lab(39,104,42,44)+hl(40,100,38);
+if(p.shape=='jar')b='<g transform="translate(60 172) scale(1.18) translate(-60 -172)"><rect x="24" y="120" width="72" height="52" rx="16" fill="'+A+'"/>'+lab(35,133,50,30)+hl(33,146,16)+'<rect x="20" y="94" width="80" height="28" rx="7" fill="'+M+'"/><path d="M22 108h76" stroke="#5e4720" stroke-width="24" stroke-dasharray=".6 4" opacity=".4"/><rect x="26" y="96" width="68" height="4" rx="2" fill="#fff" opacity=".45"/></g>';
+if(p.shape=='pump')b='<rect x="40" y="12" width="46" height="13" rx="5" fill="'+M+'"/><rect x="80" y="15" width="16" height="5" rx="2" fill="'+M+'"/><rect x="57" y="24" width="8" height="24" fill="'+M+'"/><rect x="51" y="46" width="20" height="16" rx="3" fill="'+M+'"/><rect x="30" y="60" width="60" height="114" rx="16" fill="'+A+'"/><rect x="34" y="100" width="52" height="70" rx="12" fill="'+p.c2+'" opacity=".3"/>'+lab(37,98,46,46)+hl(38,110,40);
+if(p.shape=='spray')b='<rect x="50" y="8" width="20" height="12" rx="4" fill="'+M+'"/><rect x="68" y="12" width="16" height="4" rx="2" fill="'+M+'"/><rect x="44" y="18" width="32" height="34" rx="7" fill="'+p.cap+'"/><rect x="47" y="50" width="26" height="16" rx="3" fill="'+M+'"/><rect x="36" y="64" width="48" height="110" rx="12" fill="'+A+'"/><rect x="40" y="100" width="40" height="70" rx="9" fill="'+p.c2+'" opacity=".3"/>'+lab(41,102,38,42)+hl(44,112,36);
+if(p.shape=='tube')b='<rect x="34" y="12" width="52" height="12" rx="2" fill="'+M+'"/><path d="M36 18h48" stroke="#5e4720" stroke-width="10" stroke-dasharray=".5 3" opacity=".45"/><path d="M35 24h50l6 114H29z" fill="'+A+'"/>'+lab(37,66,46,40)+'<rect x="34" y="136" width="52" height="38" rx="7" fill="'+M+'"/><rect x="38" y="140" width="4" height="30" rx="2" fill="#fff" opacity=".4"/>'+hl(40,80,30);
+return '<svg viewBox="0 0 120 180" '+(w?'width="'+w+'" ':'')+'role="img" aria-label="'+p.name+'"><defs><linearGradient id="a'+i+'" x1="0" x2="1"><stop offset="0" stop-color="'+p.c2+'"/><stop offset=".3" stop-color="'+p.c1+'"/><stop offset=".7" stop-color="'+p.c1+'"/><stop offset="1" stop-color="'+p.c2+'"/></linearGradient><linearGradient id="m'+i+'" x1="0" x2="1"><stop offset="0" stop-color="#6b5226"/><stop offset=".35" stop-color="#f4dfa8"/><stop offset=".6" stop-color="#b8924d"/><stop offset="1" stop-color="#5e4720"/></linearGradient></defs><ellipse cx="60" cy="175" rx="38" ry="4" fill="#1d1730" opacity=".2"/>'+b+'</svg>'}
+function bottleOld(p,w){return '<svg viewBox="0 0 100 180" '+(w?'width="'+w+'"':'')+' role="img" aria-label="'+p.name+' bottle"><defs><linearGradient id="g'+p.id+'" x1="0" x2="1"><stop offset="0" stop-color="'+p.c2+'"/><stop offset=".35" stop-color="'+p.c1+'"/><stop offset="1" stop-color="'+p.c2+'"/></linearGradient></defs>'+
+(p.id=='cream'?'<rect x="14" y="92" width="72" height="68" rx="14" fill="url(#g'+p.id+')"/><rect x="10" y="70" width="80" height="28" rx="8" fill="'+p.cap+'"/>':
+ '<rect x="42" y="6" width="16" height="30" rx="3" fill="'+p.cap+'"/><rect x="36" y="32" width="28" height="18" rx="3" fill="'+p.cap+'"/><rect x="22" y="48" width="56" height="124" rx="'+(p.id=='mist'?10:20)+'" fill="url(#g'+p.id+')"/><rect x="30" y="86" width="40" height="52" rx="4" fill="#fff" opacity=".55"/><text x="50" y="108" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="2" fill="#1d1730">LUMÉ</text><rect x="38" y="116" width="24" height="1" fill="#1d1730" opacity=".5"/>')+
+'<ellipse cx="38" cy="100" rx="4" ry="30" fill="#fff" opacity=".35"/></svg>'}
+function Q(id){return P.filter(function(x){return x.id==id})[0]}
+document.getElementById('hbc').innerHTML=bottle(Q('serum'));document.getElementById('hbl').innerHTML=bottle(Q('cream'));document.getElementById('hbr').innerHTML=bottle(Q('mist'));
+document.getElementById('rit').innerHTML=[['Cleanse','cleanser','Massage one pump onto damp skin, then rinse with warm water.'],['Treat','serum','Press three drops into face and neck while skin is still damp.'],['Seal','cream','Finish with a pea-sized amount to lock everything in.']].map(function(r){return '<div class="rs">'+bottle(Q(r[1]))+'<h3>'+r[0]+'</h3><p>'+r[2]+'</p></div>'}).join('');
+var g=document.getElementById('grid');
+P.forEach(function(p){sel[p.id]=Object.keys(p.sizes)[0];var d=document.createElement('article');d.className='card';d.style.setProperty('--t',p.t);
+d.innerHTML='<span class="tag">'+p.tag+'</span><div class="art"><i class="ped"></i>'+bottle(p)+'</div><h3>'+p.name+'</h3><div class="kind">'+p.kind+'</div><div class="reveal">'+p.desc+'</div><div class="sizes" role="group" aria-label="Size">'+
+Object.keys(p.sizes).map(function(s,i){return '<button aria-pressed="'+(i==0)+'" data-s="'+s+'">'+s+'</button>'}).join('')+'</div><div class="buy"><span class="price">$'+p.sizes[sel[p.id]]+'</span><button class="add">Add to cart</button></div>';
+d.querySelectorAll('.sizes button').forEach(function(b){b.onclick=function(e){e.stopPropagation();sel[p.id]=b.dataset.s;d.querySelectorAll('.sizes button').forEach(function(x){x.setAttribute('aria-pressed',x==b)});d.querySelector('.price').textContent='$'+p.sizes[b.dataset.s]}});
+d.querySelector('.art').onclick=function(){d.classList.toggle('open')};
+d.querySelector('.add').onclick=function(e){add(p,e.target)};g.appendChild(d)});
+function add(p,btn){var k=p.id+'|'+sel[p.id];cart[k]=cart[k]||{p:p,s:sel[p.id],q:0};cart[k].q++;render();
+btn.textContent='Added ✓';btn.classList.add('done');setTimeout(function(){btn.textContent='Add to cart';btn.classList.remove('done')},1300);toast(p.name+' added to your cart');}
+function money(n){return '$'+n.toFixed(2).replace('.00','')}
+function render(){var ks=Object.keys(cart),n=0,t=0,it=document.getElementById('items');
+ks.forEach(function(k){n+=cart[k].q;t+=cart[k].q*cart[k].p.sizes[cart[k].s]});
+var c=document.getElementById('count');c.textContent=n;c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');
+it.innerHTML=ks.length?'':'<p class="empty">Your cart is empty.<br>Add a product from the collection to begin.</p>';
+ks.forEach(function(k){var o=cart[k],r=document.createElement('div');r.className='item';
+r.innerHTML=bottle(o.p)+'<div><h4>'+o.p.name+'</h4><small>'+o.s+' · '+money(o.p.sizes[o.s])+'</small><br><span class="qty"><button aria-label="Decrease">−</button><span>'+o.q+'</span><button aria-label="Increase">+</button></span></div><button class="x" aria-label="Remove '+o.p.name+'" style="font-size:1.3rem">×</button>';
+var b=r.querySelectorAll('button');b[0].onclick=function(){if(--o.q<1)delete cart[k];render()};b[1].onclick=function(){o.q++;render()};b[2].onclick=function(){delete cart[k];render()};it.appendChild(r)});
+var left=Math.max(0,100-t),pc=Math.min(100,t);
+document.getElementById('tot').innerHTML=ks.length?'<div class="row">'+(left?'Add '+money(left)+' for free shipping':'You’ve unlocked free shipping')+'</div><div class="bar"><i style="width:'+pc+'%"></i></div><div class="row" style="margin-top:12px"><span>Shipping</span><span>'+(left?'$6':'Free')+'</span></div><div class="row big"><span>Total</span><span>'+money(t+(left?6:0))+'</span></div><button class="btn" id="co">Check out</button>':'';
+var co=document.getElementById('co');if(co)co.onclick=function(){cart={};render();toggle(false);toast('Order placed. Thank you!')}}
+var dr=document.getElementById('drawer'),sc=document.getElementById('scrim');
+function toggle(o){dr.classList.toggle('on',o);sc.classList.toggle('on',o);dr.setAttribute('aria-hidden',!o)}
+document.getElementById('openCart').onclick=function(){toggle(true)};
+document.getElementById('closeCart').onclick=sc.onclick=function(){toggle(false)};
+document.addEventListener('keydown',function(e){if(e.key=='Escape')toggle(false)});
+var tt;function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+// ingredients
+var tabs=document.getElementById('tabs');
+I.forEach(function(x,i){var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.innerHTML=x.n+'<span>'+x.t+'</span>';b.onclick=function(){pick(i)};tabs.appendChild(b)});
+function pick(i){var x=I[i];tabs.querySelectorAll('.tab').forEach(function(b,j){b.setAttribute('aria-selected',j==i)});
+var o=document.getElementById('orb');o.style.setProperty('--c',x.c);document.getElementById('orbText').textContent=x.t;document.getElementById('orbSub').textContent=x.s}
+pick(0);
+// count up
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var el=e.target,end=+el.dataset.n,s=null;
+function f(t){s=s||t;var p=Math.min(1,(t-s)/1400);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)})},{threshold:.6});
+document.querySelectorAll('[data-n]').forEach(function(el){io.observe(el)});
+document.getElementById('nl').onsubmit=function(e){e.preventDefault();e.target.reset();toast('You’re on the list. Welcome to LUMÉ.')};
+render();
+</script>
+</body>
+</html>
